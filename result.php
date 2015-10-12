@@ -71,9 +71,23 @@ $myCode = $_POST['code'];
 //echo htmlspecialchars($myCode);
 
 
+
+
+
+
+
+
+
 //Converts Code and HTML Characters to String
 $spitCode = htmlspecialchars($myCode);
 
+
+if(stristr($spitCode, '[firstname]') == true) {
+    str_ireplace("[FirstName]", "[[dVar=FirstName]]", "[FirstName]");
+  } else {
+	echo "Nothing Here"; 
+  }
+  
 
 
 
@@ -95,12 +109,42 @@ echo substr_count($spitCode, "meta"); // will echo Times Meta is in code
 */
 
 
+/*
 
+if(stristr($spitCode, '[firstname]') == true) {
+    echo '"Name" was founded in string';
+  } else {
+	echo "Nothing Here"; 
+  }
+
+*/
 
 
 ?>
 
-<textarea class="results" id="to_copy" name="results"> <?php echo $spitCode; ?> </textarea>
+<textarea class="results" id="to_copy" name="results"><?php
+ 
+ 
+ 
+ 
+ 
+ 
+
+$personalization = array("[FirstName]","car");
+
+
+
+$token = array("[[dVar=FirstName]]","truck");
+
+echo preg_replace($personalization, $token, $spitCode);
+
+
+  //echo str_ireplace("[FirstName]","[[dVar=FirstName]]",$spitCode);
+ 
+ 
+ 
+ 
+  ?></textarea>
 <button class="btn" id='copy_button' data-clipboard-target='to_copy' onClick="add_content()" value="write"><b>Copy To Clipboard</b></button>
 
 
